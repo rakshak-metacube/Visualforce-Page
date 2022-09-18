@@ -1,0 +1,41 @@
+<apex:page controller="searchcontroller">
+    <apex:form>
+        <apex:actionFunction name="refreshPageSize" action="{!refreshPageSize}" status="fetchStatus" reRender="pbId" />
+        <apex:pageBlock title="Account Search">
+
+            <apex:pageBlockSection columns="2">
+                <apex:inputText value="{!num}" label="Number of Accounts to Show" />
+                <apex:inputText value="{!billcity}" label="Billing City" />
+                <apex:inputText value="{!billstate}" label="Billing State" />
+                <apex:inputText value="{!billcountry}" label="Billing Country" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="Top">
+                <apex:commandButton value="Search" action="{!searchcustom}">
+                </apex:commandButton>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:pageBlock id="pbId">
+            <apex:pageblockTable value="{!account}" var="a">
+                <apex:column value="{!a.name}" />
+                <apex:column value="{!a.billingcity}" />
+                <apex:column value="{!a.billingstate}" />
+                <apex:column value="{!a.billingcountry}" />
+            </apex:pageblockTable>
+            <apex:commandButton status="fetchStatus" reRender="pbId" value="First" action="{!setCon.first}" disabled="{!!setCon.hasPrevious}"
+                title="First Page" />
+
+            <apex:commandButton status="fetchStatus" reRender="pbId" value="Previous" action="{!setCon.previous}" disabled="{!!setCon.hasPrevious}"
+                title="Previous Page" />
+
+            <apex:commandButton status="fetchStatus" reRender="pbId" value="Next" action="{!setCon.next}" disabled="{!!setCon.hasNext}"
+                title="Next Page" />
+
+            <apex:commandButton status="fetchStatus" reRender="pbId" value="Last" action="{!setCon.last}" disabled="{!!setCon.hasNext}"
+                title="Last Page" />
+            <apex:outputText>{!(setCon.pageNumber * size)+1-size}-{!IF((setCon.pageNumber * size)>noOfRecords, noOfRecords, (setCon.pageNumber
+                * size))} of {!noOfRecords}
+            </apex:outputText>
+        </apex:pageBlock>
+
+    </apex:form>
+</apex:page>

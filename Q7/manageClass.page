@@ -1,0 +1,33 @@
+<apex:page controller="CustomClassController">
+	<apex:form>
+		<apex:pageBlock>
+			<apex:pageBlockSection title="All Classes">
+				<apex:dataTable value="{!classes}" var="cls" cellPadding="4" border="1" id="recordList">
+					<apex:column>{!cls.Name}</apex:column>
+					<apex:column>
+						<apex:commandLink action="{!methodEdit}" rerender="displayClass" value="Edit">
+							<apex:param name="firstParam" assignTo="{!classId}" value="{!cls.id}" />
+						</apex:commandLink>
+					</apex:column>
+					<apex:column>
+						<apex:commandLink action="{!methodDelete}" rerender="recordList" value="Delete">
+							<apex:param name="firstParam" assignTo="{!classId}" value="{!cls.id}" />
+						</apex:commandLink>
+					</apex:column>
+				</apex:dataTable>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		<apex:pageBlock id="displayClass">
+			<apex:pageBlockSection rendered="{!render}">
+				<apex:inputField value="{!c.Name}" label="Class Name" />
+				<apex:inputField value="{!c.fee__c}" label="Fee" />
+				<apex:inputField value="{!c.Max_Size__c}" label="Max Size" />
+				<apex:inputField value="{!c.Board__c}" label="Board" />
+			</apex:pageBlockSection>
+			<apex:pageBlockButtons location="bottom" rendered="{! render}">
+				<apex:commandButton action="{! save }" value="Save" reRender="displayClass" />
+				<apex:commandButton action="{! cancel }" value="Cancel" reRender="displayClass" />
+			</apex:pageBlockButtons>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>
