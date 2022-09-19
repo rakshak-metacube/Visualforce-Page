@@ -1,0 +1,14 @@
+<apex:page standardController="Contact" extensions="RecordTypeExtension" sidebar="false">
+    <style>
+        h2 {
+            background-color: blue;
+            padding-left: 40%;
+            padding-right: 40%;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+    <h2 styleclass="recordType">
+        {!recordType}
+    </h2>
+</apex:page>

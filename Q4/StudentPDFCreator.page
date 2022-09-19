@@ -1,0 +1,7 @@
+<apex:page renderAs="pdf" standardController="Student__c">
+    <apex:pageBlock>
+        <apex:pageBlockSection>
+            <apex:detail relatedList="false" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

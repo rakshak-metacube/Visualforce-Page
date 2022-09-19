@@ -1,0 +1,5 @@
+<apex:page action="{!attachadd}" standardController="Student__c" extensions="StudentPDFExtension">
+    <h2>
+        Succesfully Generated PDF for {! Student__c.name}.
+    </h2>
+</apex:page>
